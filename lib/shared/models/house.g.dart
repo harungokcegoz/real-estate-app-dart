@@ -19,6 +19,7 @@ _$HouseImpl _$$HouseImplFromJson(Map<String, dynamic> json) => _$HouseImpl(
       longitude: (json['longitude'] as num).toDouble(),
       createdDate: DateTime.parse(json['createdDate'] as String),
       description: json['description'] as String,
+      distance: (json['distance'] as num?)?.toDouble(),
     );
 
 Map<String, dynamic> _$$HouseImplToJson(_$HouseImpl instance) =>
@@ -35,4 +36,5 @@ Map<String, dynamic> _$$HouseImplToJson(_$HouseImpl instance) =>
       'longitude': instance.longitude,
       'createdDate': instance.createdDate.toIso8601String(),
       'description': instance.description,
+      'distance': instance.distance,
     };

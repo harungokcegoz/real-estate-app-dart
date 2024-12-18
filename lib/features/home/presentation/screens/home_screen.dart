@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:go_router/go_router.dart';
 import 'package:real_estate_app/core/theme/app_theme.dart';
 import 'package:real_estate_app/features/home/presentation/providers/house_provider.dart';
 import 'package:real_estate_app/features/home/presentation/widgets/house_card.dart';
@@ -20,7 +19,7 @@ class HomeScreen extends ConsumerWidget {
         titleSpacing: 0,
         title: Container(
           alignment: Alignment.centerLeft,
-          padding: CustomPadding.horizontal,
+          padding: CustomPadding.screen,
           child: Row(
             children: [
               Text(
@@ -43,7 +42,7 @@ class HomeScreen extends ConsumerWidget {
                 if (houses.isEmpty) {
                   return Center(
                     child: Padding(
-                      padding: CustomPadding.horizontal,
+                      padding: CustomPadding.screen,
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -67,7 +66,7 @@ class HomeScreen extends ConsumerWidget {
                 }
 
                 return ListView.builder(
-                  padding: CustomPadding.all,
+                  padding: CustomPadding.screen,
                   itemCount: houses.length,
                   itemBuilder: (context, index) {
                     return Padding(

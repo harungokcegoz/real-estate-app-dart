@@ -18,6 +18,7 @@ class House with _$House {
     required double longitude,
     required DateTime createdDate,
     required String description,
+    double? distance,
   }) = _House;
 
   factory House.fromJson(Map<String, dynamic> json) => _$HouseFromJson(json);

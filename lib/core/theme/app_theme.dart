@@ -72,11 +72,12 @@ class AppTypography {
 }
 
 class CustomPadding {
-  static const horizontal = EdgeInsets.symmetric(horizontal: 16);
-  static const vertical = EdgeInsets.symmetric(vertical: 16);
-  static const all = EdgeInsets.all(16);
-  static const onlyLeft = EdgeInsets.only(left: 16);
-  static const onlyRight = EdgeInsets.only(right: 16);
-  static const onlyTop = EdgeInsets.only(top: 16);
-  static const onlyBottom = EdgeInsets.only(bottom: 16);
+  static const screen = EdgeInsets.symmetric(horizontal: 24, vertical: 10);
+  static const horizontal = EdgeInsets.symmetric(horizontal: 20);
+  static const vertical = EdgeInsets.symmetric(vertical: 20);
+  static const all = EdgeInsets.all(20);
+  static const onlyLeft = EdgeInsets.only(left: 20);
+  static const onlyRight = EdgeInsets.only(right: 20);
+  static const onlyTop = EdgeInsets.only(top: 20);
+  static const onlyBottom = EdgeInsets.only(bottom: 20);
 }

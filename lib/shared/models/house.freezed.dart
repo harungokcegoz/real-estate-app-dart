@@ -32,6 +32,7 @@ mixin _$House {
   double get longitude => throw _privateConstructorUsedError;
   DateTime get createdDate => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
+  double? get distance => throw _privateConstructorUsedError;
 
   /// Serializes this House to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -59,7 +60,8 @@ abstract class $HouseCopyWith<$Res> {
       double latitude,
       double longitude,
       DateTime createdDate,
-      String description});
+      String description,
+      double? distance});
 }
 
 /// @nodoc
@@ -89,6 +91,7 @@ class _$HouseCopyWithImpl<$Res, $Val extends House>
     Object? longitude = null,
     Object? createdDate = null,
     Object? description = null,
+    Object? distance = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -139,6 +142,10 @@ class _$HouseCopyWithImpl<$Res, $Val extends House>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String,
+      distance: freezed == distance
+          ? _value.distance
+          : distance // ignore: cast_nullable_to_non_nullable
+              as double?,
     ) as $Val);
   }
 }
@@ -162,7 +169,8 @@ abstract class _$$HouseImplCopyWith<$Res> implements $HouseCopyWith<$Res> {
       double latitude,
       double longitude,
       DateTime createdDate,
-      String description});
+      String description,
+      double? distance});
 }
 
 /// @nodoc
@@ -190,6 +198,7 @@ class __$$HouseImplCopyWithImpl<$Res>
     Object? longitude = null,
     Object? createdDate = null,
     Object? description = null,
+    Object? distance = freezed,
   }) {
     return _then(_$HouseImpl(
       id: null == id
@@ -240,6 +249,10 @@ class __$$HouseImplCopyWithImpl<$Res>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String,
+      distance: freezed == distance
+          ? _value.distance
+          : distance // ignore: cast_nullable_to_non_nullable
+              as double?,
     ));
   }
 }
@@ -259,7 +272,8 @@ class _$HouseImpl implements _House {
       required this.latitude,
       required this.longitude,
       required this.createdDate,
-      required this.description});
+      required this.description,
+      this.distance});
 
   factory _$HouseImpl.fromJson(Map<String, dynamic> json) =>
       _$$HouseImplFromJson(json);
@@ -288,10 +302,12 @@ class _$HouseImpl implements _House {
   final DateTime createdDate;
   @override
   final String description;
+  @override
+  final double? distance;
 
   @override
   String toString() {
-    return 'House(id: $id, image: $image, price: $price, bedrooms: $bedrooms, bathrooms: $bathrooms, size: $size, zip: $zip, city: $city, latitude: $latitude, longitude: $longitude, createdDate: $createdDate, description: $description)';
+    return 'House(id: $id, image: $image, price: $price, bedrooms: $bedrooms, bathrooms: $bathrooms, size: $size, zip: $zip, city: $city, latitude: $latitude, longitude: $longitude, createdDate: $createdDate, description: $description, distance: $distance)';
   }
 
   @override
@@ -316,7 +332,9 @@ class _$HouseImpl implements _House {
             (identical(other.createdDate, createdDate) ||
                 other.createdDate == createdDate) &&
             (identical(other.description, description) ||
-                other.description == description));
+                other.description == description) &&
+            (identical(other.distance, distance) ||
+                other.distance == distance));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -334,7 +352,8 @@ class _$HouseImpl implements _House {
       latitude,
       longitude,
       createdDate,
-      description);
+      description,
+      distance);
 
   /// Create a copy of House
   /// with the given fields replaced by the non-null parameter values.
@@ -365,7 +384,8 @@ abstract class _House implements House {
       required final double latitude,
       required final double longitude,
       required final DateTime createdDate,
-      required final String description}) = _$HouseImpl;
+      required final String description,
+      final double? distance}) = _$HouseImpl;
 
   factory _House.fromJson(Map<String, dynamic> json) = _$HouseImpl.fromJson;
 
@@ -393,6 +413,8 @@ abstract class _House implements House {
   DateTime get createdDate;
   @override
   String get description;
+  @override
+  double? get distance;
 
   /// Create a copy of House
   /// with the given fields replaced by the non-null parameter values.

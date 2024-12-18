@@ -1,6 +1,8 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:real_estate_app/shared/models/house.dart';
+import 'package:real_estate_app/shared/providers/location_provider.dart';
 import 'package:real_estate_app/shared/repositories/house_repository.dart';
+import 'package:real_estate_app/shared/services/location_service.dart';
 
 final houseRepositoryProvider = Provider<HouseRepository>((ref) {
   return HouseRepository();
@@ -8,7 +10,17 @@ final houseRepositoryProvider = Provider<HouseRepository>((ref) {
 
 final housesProvider = FutureProvider<List<House>>((ref) async {
   final repository = ref.read(houseRepositoryProvider);
-  return repository.getHouses();
+  final houses = await repository.getHouses();
+  
+  // Check location permission first
+  final status = await LocationService.checkLocationPermission();
+  ref.read(locationStatusProvider.notifier).state = status;
+  
+  if (status == LocationStatus.success) {
+    return LocationService.calculateDistances(houses);
+  }
+  
+  return houses;
 });
 
 final searchQueryProvider = StateProvider<String>((ref) => '');
