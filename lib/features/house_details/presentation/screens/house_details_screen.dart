@@ -17,7 +17,7 @@ class HouseDetailsScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final houseAsync = ref.watch(selectedHouseProvider(houseId));
-
+    
     return Scaffold(
       backgroundColor: AppColors.white,
       body: houseAsync.when(

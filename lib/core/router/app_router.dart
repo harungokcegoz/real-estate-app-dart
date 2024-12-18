@@ -29,7 +29,7 @@ final goRouter = GoRouter(
               builder: (context, state) => const HomeScreen(),
               routes: [
                 GoRoute(
-                  path: 'house/:id',
+                  path: '/house/:id',
                   builder: (context, state) {
                     final houseId = int.parse(state.pathParameters['id']!);
                     return HouseDetailsScreen(houseId: houseId);
