@@ -15,7 +15,7 @@ class HouseCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => context.push('/home/house/${house.id}'),
+      onTap: () => context.push('/house/${house.id}'),
       child: Container(
         height: 120,
         decoration: BoxDecoration(

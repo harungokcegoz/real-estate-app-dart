@@ -13,13 +13,13 @@ class AppColors {
 
 class AppShadows {
   static const general = BoxShadow(
-    color: Color(0x1A000000), // 10% opacity
+    color: Color(0x1A000000), 
     blurRadius: 8,
     offset: Offset(0, 2),
   );
 
   static const navigation = BoxShadow(
-    color: Color(0x1A000000), // 10% opacity
+    color: Color(0x1A000000), 
     blurRadius: 8,
     offset: Offset(0, -2),
   );
@@ -32,42 +32,42 @@ class AppTypography {
 
   static final title01 = _baseTextStyle.copyWith(
     fontSize: 18,
-    fontWeight: FontWeight.w700, // Bold
+    fontWeight: FontWeight.w700, 
   );
   
   static final title02 = _baseTextStyle.copyWith(
     fontSize: 16,
-    fontWeight: FontWeight.w700, // Bold
+    fontWeight: FontWeight.w700, 
   );
   
   static final title03 = _baseTextStyle.copyWith(
     fontSize: 16,
-    fontWeight: FontWeight.w500, // Medium
+    fontWeight: FontWeight.w500, 
   );
   
   static final body = _baseTextStyle.copyWith(
     fontSize: 12,
-    fontWeight: FontWeight.w400, // Book
+    fontWeight: FontWeight.w400, 
   );
   
   static final input = _baseTextStyle.copyWith(
     fontSize: 12,
-    fontWeight: FontWeight.w300, // Light
+    fontWeight: FontWeight.w300, 
   );
   
   static final hint = _baseTextStyle.copyWith(
     fontSize: 12,
-    fontWeight: FontWeight.w400, // Book
+    fontWeight: FontWeight.w400, 
   );
   
   static final subtitle = _baseTextStyle.copyWith(
     fontSize: 10,
-    fontWeight: FontWeight.w400, // Book
+    fontWeight: FontWeight.w400, 
   );
   
   static final detail = _baseTextStyle.copyWith(
     fontSize: 12,
-    fontWeight: FontWeight.w400, // Book
+    fontWeight: FontWeight.w400, 
   );
 }
 

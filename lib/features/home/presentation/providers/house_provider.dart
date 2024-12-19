@@ -12,7 +12,6 @@ final housesProvider = FutureProvider<List<House>>((ref) async {
   final repository = ref.read(houseRepositoryProvider);
   final houses = await repository.getHouses();
   
-  // Check location permission first
   final status = await LocationService.checkLocationPermission();
   ref.read(locationStatusProvider.notifier).state = status;
   

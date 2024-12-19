@@ -26,7 +26,7 @@ class CustomSearchBar extends ConsumerWidget {
           color: AppColors.textStrong,
         ),
         decoration: InputDecoration(
-          hintText: 'Search for a house',
+          hintText: 'Search for a home',
           hintStyle: AppTypography.hint.copyWith(
             color: AppColors.textLight,
           ),

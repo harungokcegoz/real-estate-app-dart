@@ -15,7 +15,6 @@ class LocationService {
     LocationPermission permission;
 
     try {
-      // Test if location services are enabled
       serviceEnabled = await Geolocator.isLocationServiceEnabled();
       if (!serviceEnabled) {
         return LocationStatus.serviceDisabled;
@@ -48,10 +47,8 @@ class LocationService {
         return houses;
       }
 
-      // Get current location
       final Position position = await Geolocator.getCurrentPosition();
 
-      // Calculate distance for each house
       return houses.map((house) {
         final distance = Geolocator.distanceBetween(
           position.latitude,
@@ -60,7 +57,6 @@ class LocationService {
           house.longitude,
         );
         
-        // Convert meters to kilometers and round to 1 decimal
         final distanceInKm = double.parse((distance / 1000).toStringAsFixed(1));
     
         return house.copyWith(distance: distanceInKm);

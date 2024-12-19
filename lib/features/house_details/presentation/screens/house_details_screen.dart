@@ -25,54 +25,70 @@ class HouseDetailsScreen extends ConsumerWidget {
           slivers: [
             // App Bar with Image
             SliverAppBar(
-              expandedHeight: 250,
+              expandedHeight: 200,
               pinned: true,
               backgroundColor: AppColors.white,
               leading: IconButton(
-                icon: Container(
-                  padding: const EdgeInsets.all(8),
-                  decoration: BoxDecoration(
-                    color: AppColors.white,
-                    shape: BoxShape.circle,
-                    boxShadow: [AppShadows.general],
-                  ),
-                  child: SvgPicture.asset(
+                icon:
+                  SvgPicture.asset(
                     'assets/icons/ic_back.svg',
                     colorFilter: ColorFilter.mode(
-                      AppColors.orange,
+                      AppColors.white,
                       BlendMode.srcIn,
                     ),
                   ),
-                ),
                 onPressed: () => context.pop(),
               ),
-              flexibleSpace: FlexibleSpaceBar(
-                background: CachedNetworkImage(
-                  imageUrl: 'https://intern.d-tt.nl${house.image}',
-                  fit: BoxFit.cover,
-                  placeholder: (context, url) => Container(
-                    color: AppColors.lightGray,
-                    child: const Center(
-                      child: CircularProgressIndicator(
-                        valueColor: AlwaysStoppedAnimation<Color>(AppColors.orange),
+              flexibleSpace: Stack(
+                children: [
+                  Positioned.fill(
+                    child: FlexibleSpaceBar(
+                      background: CachedNetworkImage(
+                        imageUrl: 'https://intern.d-tt.nl${house.image}',
+                        fit: BoxFit.cover,
+                        placeholder: (context, url) => Container(
+                          color: AppColors.lightGray,
+                          child: const Center(
+                            child: CircularProgressIndicator(
+                              valueColor: AlwaysStoppedAnimation<Color>(AppColors.orange),
+                            ),
+                          ),
+                        ),
+                        errorWidget: (context, url, error) => Container(
+                          color: AppColors.lightGray,
+                          child: const Icon(Icons.error),
+                        ),
                       ),
                     ),
                   ),
-                  errorWidget: (context, url, error) => Container(
-                    color: AppColors.lightGray,
-                    child: const Icon(Icons.error),
+                  Positioned(
+                    bottom: 0,
+                    left: 0,
+                    right: 0,
+                    child: Container(
+                      height: 20,
+                      decoration: const BoxDecoration(
+                        color: AppColors.white,
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(15),
+                          topRight: Radius.circular(15),
+                        ),
+                      ),
+                    ),
                   ),
-                ),
+                ],
               ),
             ),
             // Content
             SliverToBoxAdapter(
-              child: Padding(
+              child: Container(
+                decoration: const BoxDecoration(
+                  color: AppColors.white,
+                ),
                 padding: CustomPadding.screen,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const SizedBox(height: 16),
                     // Price and Location
                     Row(
                       children: [
@@ -81,63 +97,39 @@ class HouseDetailsScreen extends ConsumerWidget {
                           style: AppTypography.title01,
                         ),
                         const Spacer(),
-                        if (house.distance != null)
-                          Row(
+                        Container(
+                          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 28),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
-                              SvgPicture.asset(
-                                'assets/icons/ic_location.svg',
-                                colorFilter: ColorFilter.mode(
-                                  AppColors.textMedium,
-                                  BlendMode.srcIn,
-                                ),
-                              ),
-                              const SizedBox(width: 4),
-                              Text(
-                                '${house.distance!.toStringAsFixed(1)}km',
-                                style: AppTypography.body.copyWith(
-                                  color: AppColors.textMedium,
-                                ),
-                              ),
-                            ],
-                          ),
-                      ],
-                    ),
-                    const SizedBox(height: 8),
-                    Text(
-                      '${house.zip} ${house.city}',
-                      style: AppTypography.body.copyWith(
-                        color: AppColors.textMedium,
+                              _InfoItem(
+                              iconPath: 'assets/icons/ic_bed.svg',
+                              value: house.bedrooms.toString(),
+                            ),
+                            _InfoItem(
+                              iconPath: 'assets/icons/ic_bath.svg',
+                              value: house.bathrooms.toString(),
+                            ),
+                            _InfoItem(
+                              iconPath: 'assets/icons/ic_layers.svg',
+                              value: '${house.size}m²',
+                            ),
+                            _InfoItem(
+                              iconPath: 'assets/icons/ic_location.svg',
+                              value: '${house.distance}km',
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
-                    const SizedBox(height: 24),
-                    // Info Row
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        _InfoItem(
-                          iconPath: 'assets/icons/ic_bed.svg',
-                          value: house.bedrooms.toString(),
-                          label: 'Bedrooms',
-                        ),
-                        _InfoItem(
-                          iconPath: 'assets/icons/ic_bath.svg',
-                          value: house.bathrooms.toString(),
-                          label: 'Bathrooms',
-                        ),
-                        _InfoItem(
-                          iconPath: 'assets/icons/ic_layers.svg',
-                          value: '${house.size}m²',
-                          label: 'Size',
-                        ),
                       ],
                     ),
-                    const SizedBox(height: 24),
+
                     // Description
                     Text(
                       'Description',
                       style: AppTypography.title02,
                     ),
-                    const SizedBox(height: 8),
+                    const SizedBox(height: 20),
                     Text(
                       house.description,
                       style: AppTypography.body.copyWith(
@@ -145,13 +137,13 @@ class HouseDetailsScreen extends ConsumerWidget {
                         height: 1.5,
                       ),
                     ),
-                    const SizedBox(height: 24),
+                    const SizedBox(height: 32),
                     // Location
                     Text(
                       'Location',
                       style: AppTypography.title02,
                     ),
-                    const SizedBox(height: 8),
+                    const SizedBox(height: 20),
                     Container(
                       height: 200,
                       decoration: BoxDecoration(
@@ -230,12 +222,10 @@ class HouseDetailsScreen extends ConsumerWidget {
 class _InfoItem extends StatelessWidget {
   final String iconPath;
   final String value;
-  final String label;
 
   const _InfoItem({
     required this.iconPath,
     required this.value,
-    required this.label,
   });
 
   @override
@@ -243,11 +233,7 @@ class _InfoItem extends StatelessWidget {
     return Column(
       children: [
         Container(
-          padding: const EdgeInsets.all(12),
-          decoration: BoxDecoration(
-            color: AppColors.lightGray,
-            borderRadius: BorderRadius.circular(8),
-          ),
+          padding: const EdgeInsets.all(5),
           child: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
@@ -260,21 +246,14 @@ class _InfoItem extends StatelessWidget {
                   BlendMode.srcIn,
                 ),
               ),
-              const SizedBox(width: 8),
+              const SizedBox(width: 4),
               Text(
                 value,
                 style: AppTypography.body.copyWith(
-                  color: AppColors.textStrong,
+                  color: AppColors.textMedium,
                 ),
               ),
             ],
-          ),
-        ),
-        const SizedBox(height: 4),
-        Text(
-          label,
-          style: AppTypography.detail.copyWith(
-            color: AppColors.textMedium,
           ),
         ),
       ],
