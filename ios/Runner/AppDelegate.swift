@@ -16,13 +16,13 @@ import GoogleMaps
     googleMapsChannel.setMethodCallHandler { [weak self] (call, result) in
       if call.method == "getGoogleMapsApiKey" {
         // Replace this with your actual API key
-        result("AIzaSyDeqHzkvAkI-tYpkz3-j86fpHGC67RY1L0")
+        result("")
       } else {
         result(FlutterMethodNotImplemented)
       }
     }
     
-    GMSServices.provideAPIKey("AIzaSyDeqHzkvAkI-tYpkz3-j86fpHGC67RY1L0")
+    GMSServices.provideAPIKey("")
     GeneratedPluginRegistrant.register(with: self)
     return super.application(application, didFinishLaunchingWithOptions: launchOptions)
   }
